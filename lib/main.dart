@@ -169,6 +169,7 @@ class _LoginPageState extends State<LoginPage> {
           });
         },
         child: AnimatedContainer(
+          padding: EdgeInsets.all(32),
           width: _loginWidth,
           curve: Curves.fastLinearToSlowEaseIn,
           duration: Duration(milliseconds: 1000),
@@ -179,6 +180,19 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.white.withOpacity(_loginOpacity),
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+          child: Column(
+            children: <Widget>[
+              PrimaryButton(
+                btnText: "Login",
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              OutlineBtn(
+                btnText: "Create new account",
+              )
+            ],
+          ),
         ),
       ),
       GestureDetector(
@@ -188,6 +202,7 @@ class _LoginPageState extends State<LoginPage> {
           });
         },
         child: AnimatedContainer(
+          padding: EdgeInsets.all(32),
           curve: Curves.fastLinearToSlowEaseIn,
           duration: Duration(milliseconds: 1000),
           //---------------------------------------------------------------------
@@ -197,8 +212,100 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.white,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+
+          child: Column(
+            children: <Widget>[
+              Column(
+                children: [
+                  Container(
+                    margin:EdgeInsets.only(bottom:20),
+                    child: Text("create a new account",
+                      style : TextStyle(
+                        fontSize: 20,
+                      )
+                    ),
+                  ),
+                  InputWithIcon(
+                    icon: Icons.email,
+                    hint: "Enter Email...",
+                  ),
+                  SizedBox(height: 20,),
+                  InputWithIcon(
+                    icon: Icons.vpn_key,
+                    hint: "Enter Password...",
+                  )
+                ],
+              ),
+              Column(
+                children: [
+                  PrimaryButton(
+                    btnText: "Create Account", //text for sign up
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  OutlineBtn(
+                    btnText: "Back to login",
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       )
     ]);
+  }
+}
+
+class PrimaryButton extends StatefulWidget {
+  @override
+  _PrimaryButtonState createState() => _PrimaryButtonState();
+
+  final String btnText;
+  PrimaryButton({this.btnText});
+}
+
+class _PrimaryButtonState extends State<PrimaryButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Color(0xFFB583d72), borderRadius: BorderRadius.circular(50)),
+      padding: EdgeInsets.all(20),
+      child: Center(
+        child: Text(
+          widget.btnText,
+          style: TextStyle(color: Colors.white, fontSize: 16),
+        ),
+      ),
+    );
+  }
+}
+
+class OutlineBtn extends StatefulWidget {
+  final String btnText;
+  OutlineBtn({this.btnText});
+  @override
+  _OutlineBtnState createState() => _OutlineBtnState();
+}
+
+class _OutlineBtnState extends State<OutlineBtn> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: Color(0xFFB583d72),
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(50)),
+      padding: EdgeInsets.all(20),
+      child: Center(
+        child: Text(
+          widget.btnText,
+          style: TextStyle(color: Color(0xFFB583d72), fontSize: 16),
+        ),
+      ),
+    );
   }
 }
