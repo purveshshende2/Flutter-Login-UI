@@ -1,6 +1,4 @@
-# autoui
-
-A new Flutter project.
+# Flutter Login UI
 
 ## Getting Started
 
